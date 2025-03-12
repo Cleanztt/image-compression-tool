@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片压缩工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>图片压缩工具</h1>
+            <p class="subtitle">支持PNG、JPG等格式的图片批量压缩</p>
+        </header>
+
+        <main class="main">
+            <div class="upload-section">
+                <div class="upload-area" id="dropZone">
+                    <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" width="48" height="48">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                        <p>点击或拖拽多个图片到此处</p>
+                        <button class="upload-button" onclick="document.getElementById('fileInput').click()">
+                            选择图片
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="batch-controls">
+                <button id="downloadAllBtn" class="primary-button" style="display: none;">打包下载所有图片</button>
+            </div>
+
+            <div id="imageList" class="image-list">
+                <!-- 图片列表将在这里动态生成 -->
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>©Clean - 简单高效的在线图片压缩服务</p>
+        </footer>
+    </div>
+
+    <!-- 图片项目模板 -->
+    <template id="imageItemTemplate">
+        <div class="image-item">
+            <div class="image-number"></div>
+            <div class="preview-container">
+                <div class="preview-item">
+                    <h3>原始图片</h3>
+                    <div class="image-container">
+                        <img class="original-preview" alt="原始图片预览">
+                    </div>
+                    <div class="image-info">
+                        <p>文件名：<span class="file-name"></span></p>
+                        <p>大小：<span class="original-size">0 KB</span></p>
+                        <p>尺寸：<span class="original-dimensions">0 x 0</span></p>
+                    </div>
+                </div>
+
+                <div class="preview-item">
+                    <h3>压缩后</h3>
+                    <div class="image-container">
+                        <img class="compressed-preview" alt="压缩后预览">
+                    </div>
+                    <div class="image-info">
+                        <p>大小：<span class="compressed-size">0 KB</span></p>
+                        <p>尺寸：<span class="compressed-dimensions">0 x 0</span></p>
+                        <p>压缩率：<span class="compression-ratio">0%</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="compression-controls">
+                <div class="quality-control">
+                    <label>压缩质量：<span class="quality-value">80%</span></label>
+                    <input type="range" class="quality-slider" min="1" max="100" value="80">
+                </div>
+            </div>
+            <div class="item-controls">
+                <button class="download-button">下载</button>
+                <button class="remove-button">删除</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
